@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Linking, Pressable, Text, View, useColorScheme } from "react-native";
 import { supabase } from "../../src/lib/supabase";
-import { isSafeExternalUrl } from "../../../../packages/shared/src/validation";
+import { isSafeExternalUrl } from "@okfn/shared";
 
 type StreamLink = {
   id: string;
