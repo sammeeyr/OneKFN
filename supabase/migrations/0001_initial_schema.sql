@@ -75,7 +75,6 @@ create table public.pastoral_responses (
   prayer_request_id uuid not null references public.prayer_requests(id) on delete cascade,
   author_id uuid not null references auth.users(id),
   member_visible_response text,
-  internal_note text,
   created_at timestamptz not null default now()
 );
 
