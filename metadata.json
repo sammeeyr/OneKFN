@@ -1,0 +1,7 @@
+{
+  "name": "OKFN Admin Portal",
+  "description": "Administration portal and family network management for One Kingdom Family Network",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
