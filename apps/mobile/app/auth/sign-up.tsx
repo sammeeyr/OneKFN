@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useRouter } from "expo-router";
+import { makeRedirectUri } from "expo-linking";
 import { ActivityIndicator, Pressable, Text, TextInput, View, useColorScheme } from "react-native";
 import { supabase } from "../../src/lib/supabase";
 import { useAuth } from "../../src/features/auth/AuthProvider";
@@ -36,6 +37,9 @@ export default function SignUpScreen() {
       const { data, error: authError } = await supabase.auth.signUp({
         email: normalizedEmail,
         password,
+        options: {
+          emailRedirectTo: makeRedirectUri({ scheme: "okfn", path: "auth/callback" }),
+        },
       });
       if (authError) throw authError;
       if (data.session) router.replace("/(tabs)/profile" as never);
