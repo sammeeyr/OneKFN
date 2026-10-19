@@ -1,7 +1,7 @@
 import { ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
-import { ContentCard, ScreenContainer, ScreenHeading, useOKFNTheme } from "../../src/components/ui";
-import { okfnColors as brand } from "../../src/theme/tokens";
+import { ContentCard, ScreenContainer, ScreenHeading, useOKFNTheme } from "../src/components/ui";
+import { okfnColors as brand } from "../src/theme/tokens";
 
 const rows = [
   { title: "Member profile", detail: "Account and sign-in", href: "/(tabs)/profile" as const },
