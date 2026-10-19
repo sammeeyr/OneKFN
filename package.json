@@ -2,15 +2,9 @@
   "name": "okfn-family-network",
   "private": true,
   "version": "0.1.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "dev": "npm run dev --workspace=@okfn/admin -- -p 3000 -H 0.0.0.0",
-    "build": "npm run build --workspace=@okfn/admin",
-    "dev:mobile": "npm --workspace @okfn/mobile run start",
-    "dev:admin": "npm --workspace @okfn/admin run dev",
+    "dev": "npm --prefix apps/admin run dev -- -p 3000 -H 0.0.0.0",
+    "build": "npm --prefix apps/admin run build",
     "lint": "npm run lint --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present"
