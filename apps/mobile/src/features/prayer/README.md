@@ -1,0 +1,1 @@
+Prayer submissions, consent, member-visible responses, and WhatsApp contact belong here. Keep internal pastoral notes separate from member-visible responses. Implement authorization and RLS tests before exposing real requests.
