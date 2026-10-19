@@ -1,18 +1,51 @@
 name: CI
+
 on:
   pull_request:
   push:
     branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm install
-      - run: npm run typecheck --if-present
-      - run: npm run lint --if-present
-      - run: npm test --if-present
+      - name: Install workspace dependencies
+        run: npm install --no-audit --no-fund
+      - name: Export Android app bundle
+        working-directory: apps/mobile
+        run: npx expo export --platform android --output-dir /tmp/okfn-mobile-export
+      - name: Typecheck all workspaces
+        run: npm run typecheck
+      - name: Run unit tests
+        run: npm test
+      - name: Build admin portal
+        run: npm --workspace @okfn/admin run build
+
+  database:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Start local Supabase stack
+        run: supabase start
+      - name: Apply migrations from a clean database
+        run: supabase db reset
+      - name: Lint database schema
+        run: supabase db lint --local
+      - name: Run database security tests
+        run: supabase test db
