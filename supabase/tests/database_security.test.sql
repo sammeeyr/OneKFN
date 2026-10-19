@@ -1,12 +1,13 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(13);
+select plan(15);
 
 select has_table('public', 'profiles', 'profiles table exists');
 select has_table('public', 'user_roles', 'user roles table exists');
 select has_table('public', 'prayer_requests', 'prayer requests table exists');
 select has_table('public', 'donations', 'donations table exists');
+select has_table('public', 'pastoral_internal_notes', 'internal pastoral notes use a separate table');
 
 select ok(
   exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'profiles' and policyname = 'profiles_select_own'),
@@ -23,6 +24,10 @@ select ok(
 select ok(
   not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'audit_logs'),
   'audit logs are not exposed to client roles'
+);
+select ok(
+  not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'pastoral_internal_notes'),
+  'internal pastoral notes have no client-facing RLS policies'
 );
 select ok(
   exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'prayer_requests' and policyname = 'prayer_requests_select_own' and qual like '%member_id%'),
