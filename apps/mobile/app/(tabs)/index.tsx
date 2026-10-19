@@ -39,7 +39,7 @@ export default function HomeScreen() {
         <View style={{ flexDirection: "row", gap: 10 }}>
           {[
             { title: "Watch", mark: "▶", href: "/(tabs)/watch" as const, tint: "#E7F0FF" },
-            { title: "Prayer", mark: "♡", href: "/(tabs)/profile" as const, tint: "#FFF4D6" },
+            { title: "Prayer", mark: "♡", href: "/prayer" as const, tint: "#FFF4D6" },
             { title: "Give", mark: "✦", href: "/(tabs)/giving" as const, tint: "#E1F5EB" },
             { title: "News", mark: "▤", href: "/(tabs)/announcements" as const, tint: "#F0EAFE" },
           ].map((item) => (
