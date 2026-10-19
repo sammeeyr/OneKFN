@@ -1,0 +1,19 @@
+{
+  "name": "okfn-family-network",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:mobile": "npm --workspace @okfn/mobile run start",
+    "dev:admin": "npm --workspace @okfn/admin run dev",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
