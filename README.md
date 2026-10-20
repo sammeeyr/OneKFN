@@ -60,7 +60,7 @@ The database test suite currently checks schema and policy definitions. Cross-us
 4. Test sign-up, email confirmation, sign-in, app restart/session restoration and sign-out on Android and iOS.
 
 ## First setup tasks
-1. Add the official OKFN logo, brand palette and app-store assets.
+1. Add the supplied transparent OKFN dove-and-globe logo as `apps/mobile/assets/okfn-logo.png`, then reference it from the splash, Home header and Expo app icon configuration. Keep the original artwork unchanged; do not substitute emoji or redraw the mark. Add the October event artwork under `apps/mobile/assets/` and use it in the Home event card.
 2. Configure separate development/staging/production Supabase projects.
 3. Add verified official stream URLs, WhatsApp contact and service schedule/time zone.
 4. Verify beneficiary details and payment provider eligibility.
